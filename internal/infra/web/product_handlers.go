@@ -31,9 +31,18 @@ func (p *ProductHandlers) CreateProductHandler(w http.ResponseWriter, r *http.Re
     return
   }
 
-  w.Header().set("Content-Type", "application/json")
+  w.Header().Set("Content-Type", "application/json")
   w.WriteHeader(http.StatusCreated)
   json.NewEnconder(w).Enconde(output)
 }
 
-func () LstProductHandler(){}
+func (p *ProductHandlers) LstProductHandler(w http.ResponseWriter, r http.Request){
+  output, err := p.ListProductUseCase.Execute()
+  if err != nil {
+    w.writeHeader(http.StatusInternalServerError)
+    return
+  }
+  w.header().Set("Content-type", "application/json")
+  w.WriteHeader(http.statusOk)
+  json.NewEnconder(w).Enconde(output)
+}
