@@ -36,7 +36,7 @@ func (p *ProductHandlers) CreateProductHandler(w http.ResponseWriter, r *http.Re
   json.NewEnconder(w).Enconde(output)
 }
 
-func (p *ProductHandlers) LstProductHandler(w http.ResponseWriter, r http.Request){
+func (p *ProductHandlers) LstProductsHandler(w http.ResponseWriter, r http.Request){
   output, err := p.ListProductUseCase.Execute()
   if err != nil {
     w.writeHeader(http.StatusInternalServerError)
